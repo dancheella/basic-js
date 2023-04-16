@@ -14,9 +14,16 @@ const { NotImplementedError } = require('../extensions/index.js');
  * ]) => 3`
  *
  */
-function countCats(/* matrix */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function countCats(backyard) { // объявляем функцию с именем countCats и одним параметром backyard
+  let count = 0;
+  for (let i = 0; i < backyard.length; i++) { // начало цикла по первому измерению массива backyard
+    for (let j = 0; j < backyard[i].length; j++) { // начало цикла по второму измерению массива backyard
+      if (backyard[i][j] === '^^') { // если элемент массива равен строке '^^', выполнить следующую строку кода
+        count++; // увеличиваем значение переменной count на 1
+      }
+    }
+  }
+  return count;
 }
 
 module.exports = {
