@@ -25,22 +25,22 @@ const { NotImplementedError } = require('../extensions/index.js');
  */
 function minesweeper(matrix) {
   // проходим по каждой строке в матрице
-  return matrix.map((arr, row) => {
+  return matrix.map((rowArray, rowIndex) => {
     // проходим по каждому элементу в строке
-    return arr.map((el, column) => {
-      // инициализируем счетчик числа соседних мин
-      let counter = 0;
-      // проходим по всем соседним ячейкам, включая текущую ячейку
-      for (let r = row - 1 >= 0 ? row - 1 : row; r < row + 2 && r < matrix.length; r++) {
-        for (let col = column - 1 >= 0 ? column - 1 : column; col < column + 2 && col < arr.length; col++) {
-          // если соседняя ячейка является миной, увеличиваем счетчик
-          if (matrix[r][col] === true && !(r === row && col === column)) {
-            counter += 1;
+    return rowArray.map((cell, columnIndex) => {
+      let mineCount = 0;
+
+      // проверяем каждую соседнюю ячейку, включая текущую
+      for (let row = Math.max(0, rowIndex - 1); row <= Math.min(rowIndex + 1, matrix.length - 1); row++) {
+        for (let col = Math.max(0, columnIndex - 1); col <= Math.min(columnIndex + 1, rowArray.length - 1); col++) {
+          // если соседняя ячейка является миной и не является текущей ячейкой, увеличиваем счетчик
+          if (matrix[row][col] && !(row === rowIndex && col === columnIndex)) {
+            mineCount += 1;
           }
         }
       }
-      // возвращаем окончательный подсчет для текущей ячейки
-      return counter;
+
+      return mineCount;
     });
   });
 }

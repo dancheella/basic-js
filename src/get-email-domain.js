@@ -10,9 +10,9 @@ const { NotImplementedError } = require('../extensions/index.js');
  * For the input 'prettyandsimple@example.com', the output should be 'example.com'
  *
  */
-function getEmailDomain(email) { // объявляем функцию getEmailDomain с одним аргументом email
+function getEmailDomain(email) {
   const atIndex = email.lastIndexOf('@'); // находим индекс последнего символа @ в строке email
-  return email.slice(atIndex + 1); // возвращаем подстроку строки email, начиная с символа, следующего после @, до конца строки
+  return email.slice(atIndex + 1);
 }
 
 module.exports = {

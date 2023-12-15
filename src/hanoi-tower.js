@@ -14,12 +14,11 @@ const { NotImplementedError } = require('../extensions/index.js');
  * calculateHanoi(9, 4308) => { turns: 511, seconds: 427 }
  *
  */
-function calculateHanoi(diskNumber, turnsSpeed) {
+function calculateHanoi(disksNumber, turnsSpeed) {
   // вычисляем минимальное количество ходов для решения головоломки с использованием формулы 2^n - 1
-  const turns = Math.pow(2, diskNumber) - 1;
+  const turns = Math.pow(2, disksNumber) - 1;
   // вычисляем минимальное количество секунд для решения головоломки при заданной скорости перемещения дисков в оборотах в час
   const seconds = Math.floor(turns * 3600 / turnsSpeed);
-  // возвращаем объект с двумя свойствами - количеством ходов и количеством секунд
   return { turns, seconds };
 }
 

@@ -17,27 +17,27 @@ function transform(arr) {
   // проверяем, является ли параметр arr массивом
   if (!(arr instanceof Array)) throw Error("'arr' parameter must be an instance of the Array!");
   // создаем пустой массив, в который будут добавляться элементы после применения контрольных последовательностей
-  let res = [];
+  let resultArray = [];
   if (arr.length > 0) {
     // проходимся по каждому элементу массива arr
-    arr.forEach((el, i) => {
-      if (el === '--double-prev') res.push(res[i-1]);
-      else if (el === '--double-next') res.push(arr[i+1]);
-      else if (el === '--discard-prev') {
-        res[i-1] = undefined;
-        res.push(undefined);
+    arr.forEach((element, i) => {
+      if (element === '--double-prev') resultArray.push(resultArray[i-1]);
+      else if (element === '--double-next') resultArray.push(arr[i+1]);
+      else if (element === '--discard-prev') {
+        resultArray[i-1] = undefined;
+        resultArray.push(undefined);
       }
-      else if (el === '--discard-next') {
-        res.push(undefined);
+      else if (element === '--discard-next') {
+        resultArray.push(undefined);
       }
       else if (arr[i-1] === '--discard-next') {
-        res.push(undefined);
+        resultArray.push(undefined);
       }
-      else res.push(el);
+      else resultArray.push(element);
     });
   }
-  // фильтруем массив res, удаляя из него все элементы со значением undefined
-  return res.filter(el => typeof el !== 'undefined');
+  // фильтруем массив resultArray, удаляя из него все элементы со значением undefined
+  return resultArray.filter(element => typeof element !== 'undefined');
 }
 
 module.exports = {

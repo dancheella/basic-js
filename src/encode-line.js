@@ -1,4 +1,4 @@
-const { NotImplementedError } = require('../extensions/index.js');
+const {NotImplementedError} = require('../extensions/index.js');
 
 /**
  * Given a string, return its encoding version.
@@ -11,21 +11,18 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function encodeLine(str) {
-  // создаем пустую строку, в которую будем добавлять закодированную строку
-  let result = "";
-  // создаем счетчик для подсчета количества последовательно повторяющихся символов
-  let count = 1;
+  let result = '';
 
-  // итерируемся по символам входной строки
-  for (let i = 0; i < str.length; i++) {
-    // если текущий символ равен следующему, увеличиваем счетчик
-    if (str[i] === str[i+1]) {
+  if (str.length === 0) {
+    return result;
+  }
+
+  let count = 1;
+  for (let i = 1; i <= str.length; i++) {
+    if (str[i] === str[i - 1]) {
       count++;
     } else {
-      // добавляем в результат закодированную версию предыдущего символа и его количества (если оно больше 1)
-      result += count === 1 ? "" : count; // если количество повторов равно 1, добавляем только символ
-      result += str[i];
-      // сбрасываем счетчик
+      result += (count > 1 ? count : '') + str[i - 1];
       count = 1;
     }
   }

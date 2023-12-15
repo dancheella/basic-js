@@ -23,23 +23,18 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function getDNSStats(domains) {
-  // создаем пустой объект для записи статистики DNS
   const dnsStats = {};
 
-  // итерируемся по массиву доменных имен
-  domains.forEach((domain) => {
-    // разбиваем каждое доменное имя на части по символу "."
-    const domainParts = domain.split('.').reverse();
-    // создаем переменную, в которую будем добавлять части доменного имени
-    let currentDns = '';
-    // итерируемся по частям доменного имени, начиная с наиболее общего домена (к примеру, ".com")
-    domainParts.forEach((part) => {
-      // добавляем очередную часть доменного имени к переменной currentDns
-      currentDns += `.${part}`;
-      // если такой DNS уже встречался, увеличиваем его количество на 1, иначе добавляем его в объект со значением 1
-      dnsStats[currentDns] = (dnsStats[currentDns] || 0) + 1;
-    });
-  });
+  for (const domain of domains) {
+    const parts = domain.split('.').reverse();
+
+    let currentDomain = '';
+    for (const part of parts) {
+      currentDomain += `.${part}`;
+
+      dnsStats[currentDomain] = (dnsStats[currentDomain] || 0) + 1;
+    }
+  }
 
   return dnsStats;
 }

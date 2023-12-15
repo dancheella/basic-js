@@ -12,9 +12,7 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function deleteDigit(n) {
-  // преобразуем число в строку для возможности обработки цифр
   let numStr = n.toString();
-  // создаем переменную для хранения максимального числа
   let maxNum = 0;
 
   // проходим циклом по каждой цифре в числе

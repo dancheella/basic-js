@@ -13,27 +13,20 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 class DepthCalculator {
-  // определяем метод calculateDepth внутри класса DepthCalculator
-  calculateDepth(arr, depth = 1) {
-    // функция принимает массив и глубину (если не задана, по умолчанию она равна 1)
+  calculateDepth(arr, currentDepth = 1) {
     if (!Array.isArray(arr)) {
-      // если аргумент arr не является массивом, возвращаем 0 (глубина невалидна)
-      return 0;
+      return currentDepth;
     }
-    let maxDepth = depth;
-    // инициализируем переменную maxDepth текущей глубиной
+
+    let maxDepth = currentDepth;
     for (let i = 0; i < arr.length; i++) {
-      // проходим по каждому элементу массива
       if (Array.isArray(arr[i])) {
-        // если элемент является массивом, то вызываем метод calculateDepth рекурсивно, увеличивая глубину на 1
-        const currentDepth = this.calculateDepth(arr[i], depth + 1);
-        // получаем глубину текущего элемента и сохраняем её в переменной currentDepth
-        maxDepth = Math.max(maxDepth, currentDepth);
-        // обновляем максимальную глубину, если текущая глубина больше
+        const nestedDepth = this.calculateDepth(arr[i], currentDepth + 1);
+        maxDepth = Math.max(maxDepth, nestedDepth);
       }
     }
+
     return maxDepth;
-    // возвращаем максимальную глубину
   }
 }
 

@@ -19,11 +19,9 @@ const HALF_LIFE_PERIOD = 5730;
  *
  */
 
-// объявляем функцию dateSample с одним параметром sampleActivity
 function dateSample(sampleActivity) {
   // проверяем, что параметр является строкой, не пустой, и содержит число
   if (typeof sampleActivity !== 'string' || !sampleActivity || isNaN(parseFloat(sampleActivity))) {
-    // если параметр не соответствует требованиям, возвращаем false
     return false;
   }
 
@@ -32,13 +30,11 @@ function dateSample(sampleActivity) {
 
   // проверяем, что значение активности в допустимом диапазоне
   if (activity <= 0 || activity >= MODERN_ACTIVITY) {
-    // если значение активности не соответствует требованиям, возвращаем false
     return false;
   }
 
-  // Рассчитываем возраст образца по формуле, округляем до ближайшего целого числа и возвращаем результат
-  const age = Math.ceil(-Math.log(activity / MODERN_ACTIVITY) * HALF_LIFE_PERIOD / 0.693);
-  return age;
+  // рассчитываем возраст образца по формуле, округляем до ближайшего целого числа и возвращаем результат
+  return Math.ceil(-Math.log(activity / MODERN_ACTIVITY) * HALF_LIFE_PERIOD / 0.693);
 }
 
 module.exports = {

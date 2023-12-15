@@ -27,16 +27,16 @@ function getSeason(date) {
     throw Error("Invalid date!");
   }
 
-  // получаем номер месяца из даты и в зависимости от его значения возвращаем соответствующую строку с временем года
   const month = date.getMonth();
-  if (month > 10 || month < 2) {
-    return 'winter';
-  } else if (month < 5) {
+
+  if (month >= 2 && month <= 4) {
     return 'spring';
-  } else if (month < 8) {
+  } else if (month >= 5 && month <= 7) {
     return 'summer';
-  } else {
+  } else if (month >= 8 && month <= 10) {
     return 'autumn';
+  } else {
+    return 'winter';
   }
 }
 

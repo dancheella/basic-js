@@ -5,30 +5,41 @@ const { NotImplementedError } = require('../extensions/index.js');
  * 
  */
 const chainMaker = {
-  chain : [], // создаем массив, который будет хранить элементы цепочки
-  getLength() { // метод для получения длины цепочки
+  chain : [],
+
+  // метод для получения длины цепочки
+  getLength() {
     return this.chain.length;
   },
-  addLink(value = ' ') { // метод для добавления элемента в цепочку
+
+  // метод для добавления элемента в цепочку
+  addLink(value = ' ') {
     this.chain.push(`( ${value} )`); // добавляем элемент в массив в виде строки
-    return this; // возвращаем сам объект, чтобы можно было вызывать методы цепочкой
+    return this;
   },
-  removeLink( position ) { // метод для удаления элемента из цепочки по указанной позиции
+
+  // метод для удаления элемента из цепочки по указанной позиции
+  removeLink( position ) {
     if (typeof position !== 'number' || position < 1 || position > this.chain.length || position % 1) { // проверяем корректность позиции
       this.chain = []; // если позиция некорректна, очищаем массив
-      throw Error("You can't remove incorrect link!"); // и выбрасываем исключение с сообщением об ошибке
+      throw Error("You can't remove incorrect link!");
     }
-    this.chain.splice(position-1, 1) // удаляем элемент из массива
-    return this; // возвращаем сам объект, чтобы можно было вызывать методы цепочкой
+
+    this.chain.splice(position - 1, 1) // удаляем элемент из массива
+    return this;
   },
-  reverseChain() { // метод для разворота цепочки
+
+  // метод для разворота цепочки
+  reverseChain() {
     this.chain.reverse(); // разворачиваем массив
-    return this; // возвращаем сам объект, чтобы можно было вызывать методы цепочкой
+    return this;
   },
-  finishChain() { // метод для завершения работы с цепочкой
-    const res = this.chain.join('~~'); // создаем строку из массива элементов, разделенных '~~'
+
+  // метод для завершения работы с цепочкой
+  finishChain() {
+    const result = this.chain.join('~~'); // создаем строку из массива элементов, разделенных '~~'
     this.chain = []; // очищаем массив
-    return res; // возвращаем итоговую строку
+    return result;
   }
 };
 

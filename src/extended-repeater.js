@@ -33,11 +33,9 @@ function repeater(str, options) {
       .join(additionSeparator); // объединяем элементы массива с помощью разделителя
 
   // создаем итоговые строки с повторением str и дополнительной строки
-  const repeatedStr = new Array(repeatTimes)
+  return new Array(repeatTimes)
       .fill(strStr + repeatedAdditionStr) // заполняем массив строкой str и повторенной дополнительной строкой
       .join(separator); // объединяем элементы массива с помощью разделителя
-
-  return repeatedStr;
 }
 
 module.exports = {
